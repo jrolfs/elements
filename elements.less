@@ -41,7 +41,7 @@ More info at:  http://lesselements.com
     border-bottom: solid 1px @bottom-color;
 }
 
-.text-shadow (@string: 0 1px 3px rgba(0,0,0,0.25)) {
+.text-shadow(@string: 0 1px 3px rgba(0,0,0,0.25)) {
     text-shadow: @string;
 }
 
@@ -60,7 +60,7 @@ More info at:  http://lesselements.com
     box-shadow: @arguments;
 }
 
-.multi-box-shadow (@shadow1,@shadow2: transparent 0 0 0,@shadow3: transparent 0 0 0,@shadow4: transparent 0 0 0) {
+.multi-box-shadow(@shadow1,@shadow2: transparent 0 0 0,@shadow3: transparent 0 0 0,@shadow4: transparent 0 0 0) {
     -webkit-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
     box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
 }
@@ -92,22 +92,15 @@ More info at:  http://lesselements.com
     background-clip: padding;
 }
 
-.opacity: (@opacity: 0.5) {
+.opacity(@opacity: 0.5) {
     -moz-opacity: @opacity;
     -khtml-opacity: @opacity;
     -webkit-opacity: @opacity;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter:  alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)";
+    filter:  alpha(opacity=@opacity);
     opacity: @opacity;
 }
 
-.transition-duration(@duration: 0.2s) {
-    -webkit-transition-duration: @duration;
-    -moz-transition-duration: @duration;
-    -o-transition-duration: @duration;
-    -ms-transition-duration: @duration;
-    transition-duration: @duration;
-}
 
 .rotation(@deg:5deg) {
     -webkit-transform: rotate(@deg);
@@ -123,6 +116,20 @@ More info at:  http://lesselements.com
     -o-transform: scale(@ratio);
     -ms-transform: scale(@ratio);
     transform: scale(@ratio);
+}
+
+.transition(@duration:0.2s, @ease:ease-out) {
+  -webkit-transition: all @duration @ease;
+  -moz-transition: all @duration @ease;
+  transition: all @duration @ease;
+}
+
+.transition-duration(@duration: 0.2s) {
+    -webkit-transition-duration: @duration;
+    -moz-transition-duration: @duration;
+    -o-transition-duration: @duration;
+    -ms-transition-duration: @duration;
+    transition-duration: @duration;
 }
 
 .transition-property(@property:all,@duration:.2s,@ease:ease-out) {
