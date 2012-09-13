@@ -12,10 +12,21 @@ More info at:  http://lesselements.com
 -----------------------------------------------------*/
 
 
+.clear-fix {
+    *zoom: 1;
+    &:before,
+    &:after {
+         display: table;
+         content: "";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
 .gradient(@color: #F5F5F5,@start: #EEE,@stop: #FFF) {
     background: @color;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, @start), color-stop(1, @stop));
-
     background: -webkit-linear-gradient(bottom, @start, @stop);
     background: -moz-linear-gradient(bottom, @start, @stop);
     background: -o-linear-gradient(bottom, @start, @stop);
@@ -23,10 +34,17 @@ More info at:  http://lesselements.com
     background: linear-gradient(bottom, @start, @stop);
 }
 
+.gradient-hover(@color: #F5F5F5, @start: #EEE, @stop: #EEE) {
+    .gradient(@color, @start, @stop);
+
+    &:hover {
+        .gradient(lighten(@color, 10%), @start, lighten(@stop, 5%));
+    }
+}
+
 .bw-gradient(@color: #F5F5F5,@start: 0,@stop: 255) {
     background: @color;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(@start,@start,@start)), color-stop(1, rgb(@stop,@stop,@stop)));
-
     background: -webkit-linear-gradient(bottom, rgb(@start,@start,@start) 0%, rgb(@start,@start,@start) 100%);
     background: -moz-linear-gradient(bottom, rgb(@start,@start,@start) 0%, rgb(@start,@start,@start) 100%);
     background: -o-linear-gradient(bottom, rgb(@start,@start,@start) 0%, rgb(@start,@start,@start) 100%);
@@ -67,7 +85,6 @@ More info at:  http://lesselements.com
 
 .rounded(@radius: 2px) {
     border-radius: @radius;
-
     -webkit-background-clip: padding;
     -moz-background-clip: padding;
     background-clip: padding;
@@ -119,9 +136,9 @@ More info at:  http://lesselements.com
 }
 
 .transition(@duration:0.2s, @ease:ease-out) {
-  -webkit-transition: all @duration @ease;
-  -moz-transition: all @duration @ease;
-  transition: all @duration @ease;
+    -webkit-transition: all @duration @ease;
+    -moz-transition: all @duration @ease;
+    transition: all @duration @ease;
 }
 
 .transition-duration(@duration: 0.2s) {
@@ -138,6 +155,26 @@ More info at:  http://lesselements.com
     -o-transition: @property @duration @ease;
     -ms-transition: @property @duration @ease;
     transition: @property @duration @ease;
+}
+
+.transition-properties(@property1,@ease1,@property2,@ease2,@duration:.2s) {
+    -webkit-transition-property: @property1, @property2;
+    -moz-transition-property: @property1, @property2;
+    -o-transition-property: @property1, @property2;
+    -ms-transition-property: @property1, @property2;
+    transition-property: @property1, @property2;
+
+    -webkit-transition-duration: @duration, @duration;
+    -moz-transition-duration: @duration, @duration;
+    -o-transition-duration: @duration, @duration;
+    -ms-transition-duration: @duration, @duration;
+    transition-duration: @duration, @duration;
+
+    -webkit-transition-timing-function: @ease1, @ease2;
+    -moz-transition-timing-function: @ease1, @ease2;
+    -o-transition-timing-function: @ease1, @ease2;
+    -ms-transition-timing-function: @ease1, @ease2;
+    transition-timing-function: @ease1, @ease2;
 }
 
 .columns(@colwidth: 250px,@colcount: 0,@colgap: 50px,@columnRuleColor: #EEE,@columnRuleStyle: solid,@columnRuleWidth: 1px) {
